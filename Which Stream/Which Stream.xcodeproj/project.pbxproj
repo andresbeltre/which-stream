@@ -433,7 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4K83QX8Q6;
+				DEVELOPMENT_TEAM = XK376D38M3;
 				INFOPLIST_FILE = "Which Stream/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,7 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4K83QX8Q6;
+				DEVELOPMENT_TEAM = XK376D38M3;
 				INFOPLIST_FILE = "Which Stream/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
