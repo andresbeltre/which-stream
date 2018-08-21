@@ -27,7 +27,7 @@
 			<string>com.which.Which-Stream</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>which-simkl-authentication</string>
+				<string>which-authentication</string>
 			</array>
 		</dict>
 		<dict>
