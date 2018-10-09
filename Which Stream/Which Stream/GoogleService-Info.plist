@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>798912265406-g8d1c5c9b67datff57a25aajngnuc36o.apps.googleusercontent.com</string>
+	<string>407208020585-n6rscheq76srk6gdehnsrg8bpph3inp5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.798912265406-g8d1c5c9b67datff57a25aajngnuc36o</string>
+	<string>com.googleusercontent.apps.407208020585-n6rscheq76srk6gdehnsrg8bpph3inp5</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAs2kXWcHURfznX3aMP4ozjca7AQ-aNBJo</string>
+	<string>AIzaSyBWiPv5BwWY9ZvxPoU6-9Xdg5UhDcY8ouU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>798912265406</string>
+	<string>407208020585</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.which.Which-Stream</string>
 	<key>PROJECT_ID</key>
-	<string>which-stream</string>
+	<string>which-stream-57c21</string>
 	<key>STORAGE_BUCKET</key>
-	<string>which-stream.appspot.com</string>
+	<string>which-stream-57c21.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:798912265406:ios:b24fc71fabed1ada</string>
+	<string>1:407208020585:ios:b24fc71fabed1ada</string>
 	<key>DATABASE_URL</key>
-	<string>https://which-stream.firebaseio.com</string>
+	<string>https://which-stream-57c21.firebaseio.com</string>
 </dict>
 </plist>

@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  Which Stream
@@ -8,6 +9,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,10 +24,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        settings.areTimestampsInSnapshotsEnabled = true
 //        db.settings = settings
         
+        // Initialize FB SDK
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // Application window
+        window = UIWindow(frame: UIScreen.main.bounds)
+        // Application's root view controller (navigation controller
+        // to allow for pushing views and not having to do segues)
+        let firstVC = IntroViewController()
+        let rootVC = UINavigationController(rootViewController: firstVC)
+        // Tell window what first view controller to present
+        window?.rootViewController = rootVC
+        // Show window to the screen
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
-    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        
+        return handled
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -48,6 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    
 }
 

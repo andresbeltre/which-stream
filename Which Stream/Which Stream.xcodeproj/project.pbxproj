@@ -9,17 +9,18 @@
 /* Begin PBXBuildFile section */
 		0EF9B85521054E0D007F9E27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF9B85421054E0D007F9E27 /* AppDelegate.swift */; };
 		0EF9B85721054E0D007F9E27 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF9B85621054E0D007F9E27 /* IntroViewController.swift */; };
-		0EF9B85A21054E0E007F9E27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF9B85821054E0E007F9E27 /* Main.storyboard */; };
 		0EF9B85C21054E13007F9E27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EF9B85B21054E13007F9E27 /* Assets.xcassets */; };
 		0EF9B85F21054E13007F9E27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF9B85D21054E13007F9E27 /* LaunchScreen.storyboard */; };
 		0EF9B86A21054E13007F9E27 /* Which_StreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF9B86921054E13007F9E27 /* Which_StreamTests.swift */; };
 		0EF9B87521054E13007F9E27 /* Which_StreamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF9B87421054E13007F9E27 /* Which_StreamUITests.swift */; };
 		3BB92C96E8862DAA7D861320 /* Pods_Which_StreamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88E879AF5AEF2989F6EBEB3 /* Pods_Which_StreamTests.framework */; };
 		CF513A26C2406A9F1114F9E6 /* Pods_Which_Stream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0936D2EB0BC851181D419D /* Pods_Which_Stream.framework */; };
-		EA25D25F212F5F46007956EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA25D25E212F5F44007956EA /* GoogleService-Info.plist */; };
 		EA25D261213105C6007956EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D260213105C5007956EA /* LoginViewController.swift */; };
 		EA25D26321310653007956EA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D26221310653007956EA /* RegisterViewController.swift */; };
+		EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */; };
 		EA95926B4EE80C25C91241CE /* Pods_Which_StreamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E71C656ADE79BCA2A6E49 /* Pods_Which_StreamUITests.framework */; };
+		EAD93B6F2153EE95008CF77E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */; };
+		EAD93B7121547846008CF77E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD93B7021547846008CF77E /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,6 @@
 		0EF9B85121054E0D007F9E27 /* Which Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Which Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF9B85421054E0D007F9E27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EF9B85621054E0D007F9E27 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
-		0EF9B85921054E0E007F9E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EF9B85B21054E13007F9E27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EF9B85E21054E13007F9E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EF9B86021054E13007F9E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,9 +60,11 @@
 		C335E3DFD6AA1EB9BFE8DBD0 /* Pods-Which StreamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which StreamUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which StreamUITests/Pods-Which StreamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C88E879AF5AEF2989F6EBEB3 /* Pods_Which_StreamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Which_StreamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B4C5A9BE6D8BF05E0BE80A /* Pods-Which Stream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which Stream.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream.release.xcconfig"; sourceTree = "<group>"; };
-		EA25D25E212F5F44007956EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA25D260213105C5007956EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA25D26221310653007956EA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassViewController.swift; sourceTree = "<group>"; };
+		EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EAD93B7021547846008CF77E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F681FCF50052AB745BB7D5E0 /* Pods-Which Stream.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which Stream.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream.debug.xcconfig"; sourceTree = "<group>"; };
 		F73EF4424E0E5E14F04DAD21 /* Pods-Which StreamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which StreamTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which StreamTests/Pods-Which StreamTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,13 +125,14 @@
 			children = (
 				0EF9B85421054E0D007F9E27 /* AppDelegate.swift */,
 				0EF9B85621054E0D007F9E27 /* IntroViewController.swift */,
-				0EF9B85821054E0E007F9E27 /* Main.storyboard */,
 				0EF9B85B21054E13007F9E27 /* Assets.xcassets */,
 				0EF9B85D21054E13007F9E27 /* LaunchScreen.storyboard */,
-				EA25D25E212F5F44007956EA /* GoogleService-Info.plist */,
 				0EF9B86021054E13007F9E27 /* Info.plist */,
+				EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */,
 				EA25D260213105C5007956EA /* LoginViewController.swift */,
 				EA25D26221310653007956EA /* RegisterViewController.swift */,
+				EAD93B7021547846008CF77E /* MainViewController.swift */,
+				EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */,
 			);
 			path = "Which Stream";
 			sourceTree = "<group>";
@@ -289,9 +292,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF9B85F21054E13007F9E27 /* LaunchScreen.storyboard in Resources */,
-				EA25D25F212F5F46007956EA /* GoogleService-Info.plist in Resources */,
 				0EF9B85C21054E13007F9E27 /* Assets.xcassets in Resources */,
-				0EF9B85A21054E0E007F9E27 /* Main.storyboard in Resources */,
+				EAD93B6F2153EE95008CF77E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +384,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -395,7 +400,10 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -486,8 +494,10 @@
 			files = (
 				EA25D261213105C6007956EA /* LoginViewController.swift in Sources */,
 				0EF9B85721054E0D007F9E27 /* IntroViewController.swift in Sources */,
+				EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */,
 				0EF9B85521054E0D007F9E27 /* AppDelegate.swift in Sources */,
 				EA25D26321310653007956EA /* RegisterViewController.swift in Sources */,
+				EAD93B7121547846008CF77E /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,14 +533,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0EF9B85821054E0E007F9E27 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0EF9B85921054E0E007F9E27 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0EF9B85D21054E13007F9E27 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -665,10 +667,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XK376D38M3;
 				INFOPLIST_FILE = "Which Stream/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.which.Which-Stream";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -686,10 +685,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XK376D38M3;
 				INFOPLIST_FILE = "Which Stream/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.which.Which-Stream";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -706,11 +702,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -727,11 +719,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -747,11 +735,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -767,11 +751,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

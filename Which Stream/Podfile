@@ -6,6 +6,7 @@ target 'Which Stream' do
   use_frameworks!
 
   # Pods for Which Stream
+	pod 'FBSDKLoginKit'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'

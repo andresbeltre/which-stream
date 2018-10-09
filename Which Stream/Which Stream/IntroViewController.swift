@@ -32,22 +32,77 @@ class IntroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBackgroundGradient()
-        setupLayout()
-    }
-    
-    func setupLayout() {
         // Hide navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setupBackgroundGradient()
+        // Animate the logo
+        animateIntro()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    /// Adds animation features to the view
+    func animateIntro() {
+        // Create image views for both the logo and the loading indicator
+        let whichLogo = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: 80, width: 300, height: 150))
+        let exclamationMark = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: (self.view.frame.height/2 - 75), width: 300, height: 150))
+        
+        // Set initial alpha to zero so elements don't appear in view
+        whichLogo.alpha = 0
+        exclamationMark.alpha = 0
+        
+        // Add Logo and loading indicator to view
+        self.view.addSubview(whichLogo)
+        self.view.addSubview(exclamationMark)
+        
+        // Add the image to the respective elements
+        let logoImage = UIImage(named: "WhichLogo")
+        whichLogo.image = logoImage
+        whichLogo.contentMode = .scaleAspectFit
+        
+        let exclamationImage = UIImage(named: "ExclamationMark")
+        exclamationMark.image = exclamationImage
+        exclamationMark.contentMode = .scaleAspectFit
+        
+        // Animate the exclamation mark to repeatedly fade in and out
+        UIView.animate(withDuration: 1.2, delay: 0.0, options: [.repeat, .autoreverse], animations: {
+            exclamationMark.alpha = 1
+        }, completion: nil)
+        // Animate the movement of the exclamation mark to the top part of the view
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+            UIView.animate(withDuration: 2.0, animations: {
+                // removes the ongoing animation on the element
+                exclamationMark.layer.removeAllAnimations()
+                exclamationMark.alpha = 1
+                exclamationMark.frame.origin.y -= 180
+            }, completion: { finished in
+                // Upon completion, animate showing up of Wh!ch Logo
+                UIView.animate(withDuration: 1.5, animations: {
+                    whichLogo.alpha = 1
+                    exclamationMark.alpha = 0
+                    self.setupLayout()
+                })
+            })
+        })
+    }
+    
+    /// Sets up the views layout
+    func setupLayout() {
         // Programatically create buttons
         let loginButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
         loginButton.titleLabel?.textColor = .white
+        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         loginButton.addTarget(self, action: #selector(loginSegue), for: .touchUpInside)
         let registerButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
         registerButton.titleLabel?.textColor = .white
+        registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         registerButton.addTarget(self, action: #selector(registerSegue), for: .touchUpInside)
         let guestButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
         guestButton.titleLabel?.textColor = .white
+        guestButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20) 
         guestButton.addTarget(self, action: #selector(guestSegue), for: .touchUpInside)
         
         // Assign correct text to respective buttons
@@ -55,6 +110,13 @@ class IntroViewController: UIViewController {
         registerButton.setTitle("Register", for: .normal)
         guestButton.setTitle("Guest", for: .normal)
         
+        // Initially hide buttons from view
+        loginButton.isHidden = true
+        registerButton.isHidden = true
+        guestButton.isHidden = true
+        loginButton.alpha = 0
+        registerButton.alpha = 0
+        guestButton.alpha = 0
         // Add buttons to view
         self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
@@ -74,8 +136,21 @@ class IntroViewController: UIViewController {
         // Constraints for guest button
         guestButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         guestButton.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 10).isActive = true
+        
+        // Animate fade in of buttons in view
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            UIView.animate(withDuration: 1.5, animations: {
+                loginButton.isHidden = false
+                registerButton.isHidden = false
+                guestButton.isHidden = false
+                loginButton.alpha = 1
+                registerButton.alpha = 1
+                guestButton.alpha = 1
+            })
+        })
     }
     
+    /// Sets the initial gradient used as the main background for the application
     func setupBackgroundGradient() {
         self.view.backgroundColor = .clear
         let gradientLayer = CAGradientLayer()
@@ -88,14 +163,17 @@ class IntroViewController: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
 
+    /// Performs a segue to the login view
     @objc func loginSegue() {
-        self.performSegue(withIdentifier: "toLoginSegue", sender: self)
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
+    /// Performs a segue to the register view
     @objc func registerSegue() {
-        self.performSegue(withIdentifier: "toRegisterSegue", sender: self)
+        self.navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     
+    /// Performs a segue to the main initial view for guests
     @objc func guestSegue() {
 
     }
