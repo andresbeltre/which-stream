@@ -3,7 +3,7 @@
 //  Which Stream
 //
 //  Created by Leo Oliveira on 8/24/18.
-//  Copyright © 2018 Whcih. All rights reserved.
+//  Copyright © 2018 Which. All rights reserved.
 //
 
 import UIKit
@@ -13,6 +13,12 @@ import FBSDKLoginKit
 
 extension UITextField {
 
+    /**
+     Extends the text field and allows them to have a bottom border (for visual purposes)
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func setBottomBorder() {
         self.borderStyle = .none
         self.backgroundColor = .clear
@@ -28,28 +34,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var usersRef: DocumentReference!
     var emailInput = UITextField()
     var passInput = UITextField()
-    
+    let APP_DEFAULTS = AppDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        usersRef = Firestore.firestore().document("users")
-        setupBackgroundGradient()
+        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
         setupLayout()
     }
     
-    func setupBackgroundGradient() {
-        self.view.backgroundColor = .clear
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        gradientLayer.colors = [UIColor(hex: "5d0028").cgColor, UIColor(hex: "c96548").cgColor]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
+    /**
+     Sets up the initial elements of the view.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func setupLayout() {
         // Create logo image instance
         let whichLogo = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: 80, width: 300, height: 150))
@@ -162,12 +162,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         forgotPassButton.topAnchor.constraint(equalTo: passInput.bottomAnchor, constant: 5).isActive = true
     }
     
-    // Dismisses keyboard and removes the focus from a specific text field
+    /**
+     Dismisses the keyboard and removes the focus from a specific text field.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    /**
+     Authenticate the user with the Firebase service.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func firebaseAuthentication() {
         if (emailInput.text == "" || self.passInput.text == "") {
             let alert = UIAlertController(title: "Error", message: "Please type in your email and password", preferredStyle: .alert)
@@ -210,6 +221,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    /**
+     Authenticate the user with the Facebook service.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func facebookAuthentication() {
         let fbManager = FBSDKLoginManager()
         fbManager.logIn(withReadPermissions: ["email"], from: self, handler: { (result, error) -> Void in
@@ -228,6 +245,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    /**
+     Retrieve user data from a Facebook user.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func getFacebookUserData() {
         if (FBSDKAccessToken.current() != nil) {
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).start(completionHandler: { (connection, result, error) -> Void in
@@ -243,10 +266,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    /**
+     Function to dismiss view upon being triggered.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func dismissView() {
         self.navigationController?.popViewController(animated: true)
     }
     
+    /**
+     Move to the Forgot Password section of the app upon being triggered.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func forgotPassSegue() {
         self.navigationController?.pushViewController(ForgotPassViewController(), animated: true)
     }

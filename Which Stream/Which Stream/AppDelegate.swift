@@ -4,7 +4,7 @@
 //  Which Stream
 //
 //  Created by Andrés Beltré on 7/22/18.
-//  Copyright © 2018 Whcih. All rights reserved.
+//  Copyright © 2018 Which. All rights reserved.
 //
 
 import UIKit

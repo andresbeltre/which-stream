@@ -15,6 +15,7 @@
 		0EF9B87521054E13007F9E27 /* Which_StreamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF9B87421054E13007F9E27 /* Which_StreamUITests.swift */; };
 		3BB92C96E8862DAA7D861320 /* Pods_Which_StreamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88E879AF5AEF2989F6EBEB3 /* Pods_Which_StreamTests.framework */; };
 		CF513A26C2406A9F1114F9E6 /* Pods_Which_Stream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0936D2EB0BC851181D419D /* Pods_Which_Stream.framework */; };
+		EA124AC4218F8F1200B607CB /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA124AC3218F8F1200B607CB /* AppDefaults.swift */; };
 		EA25D261213105C6007956EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D260213105C5007956EA /* LoginViewController.swift */; };
 		EA25D26321310653007956EA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D26221310653007956EA /* RegisterViewController.swift */; };
 		EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */; };
@@ -60,6 +61,7 @@
 		C335E3DFD6AA1EB9BFE8DBD0 /* Pods-Which StreamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which StreamUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which StreamUITests/Pods-Which StreamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C88E879AF5AEF2989F6EBEB3 /* Pods_Which_StreamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Which_StreamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B4C5A9BE6D8BF05E0BE80A /* Pods-Which Stream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which Stream.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream.release.xcconfig"; sourceTree = "<group>"; };
+		EA124AC3218F8F1200B607CB /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		EA25D260213105C5007956EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA25D26221310653007956EA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				EA25D26221310653007956EA /* RegisterViewController.swift */,
 				EAD93B7021547846008CF77E /* MainViewController.swift */,
 				EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */,
+				EA124AC3218F8F1200B607CB /* AppDefaults.swift */,
 			);
 			path = "Which Stream";
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA124AC4218F8F1200B607CB /* AppDefaults.swift in Sources */,
 				EA25D261213105C6007956EA /* LoginViewController.swift in Sources */,
 				0EF9B85721054E0D007F9E27 /* IntroViewController.swift in Sources */,
 				EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */,
@@ -667,7 +671,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XK376D38M3;
 				INFOPLIST_FILE = "Which Stream/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.which.Which-Stream";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -685,7 +692,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XK376D38M3;
 				INFOPLIST_FILE = "Which Stream/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.which.Which-Stream";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -702,7 +712,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -719,7 +733,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -735,7 +753,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -751,7 +773,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Which StreamUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "which.Which-StreamUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

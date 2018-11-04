@@ -3,15 +3,23 @@
 //  Which Stream
 //
 //  Created by Andrés Beltré on 7/22/18.
-//  Copyright © 2018 Whcih. All rights reserved.
+//  Copyright © 2018 Which. All rights reserved.
 //
 
 import UIKit
 
 extension UIColor {
-    // convenience keyword indicates which initializers can be inherited by
-    // subclasses that add instance variables without default values
+    
+    /**
+     Extends UIColor to allow for using specific colors based on their hex values.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     convenience init(hex: String) {
+        // convenience keyword indicates which initializers can be inherited by
+        // subclasses that add instance variables without default values
+        
         // Scan string for a hexadecimal representation
         let scanner = Scanner(string: hex)
         scanner.scanLocation = 0
@@ -29,22 +37,28 @@ extension UIColor {
 }
 class IntroViewController: UIViewController {
     
+    let APP_DEFAULTS = AppDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Hide navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        setupBackgroundGradient()
+        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
         // Animate the logo
         animateIntro()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     
-    /// Adds animation features to the view
+    /**
+     Add animation features to the view.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func animateIntro() {
         // Create image views for both the logo and the loading indicator
         let whichLogo = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: 80, width: 300, height: 150))
@@ -89,7 +103,12 @@ class IntroViewController: UIViewController {
         })
     }
     
-    /// Sets up the views layout
+    /**
+     Sets up the view's elements
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func setupLayout() {
         // Programatically create buttons
         let loginButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
@@ -150,37 +169,36 @@ class IntroViewController: UIViewController {
         })
     }
     
-    /// Sets the initial gradient used as the main background for the application
-    func setupBackgroundGradient() {
-        self.view.backgroundColor = .clear
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        gradientLayer.colors = [UIColor(hex: "5d0028").cgColor, UIColor(hex: "c96548").cgColor]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
-    }
 
-    /// Performs a segue to the login view
+    /**
+     Move to the login section of the application.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func loginSegue() {
         self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
-    /// Performs a segue to the register view
+    /**
+     Move to the register section of the application.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func registerSegue() {
         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     
-    /// Performs a segue to the main initial view for guests
+    /**
+     Moves to the main view of the application if we have a guest user.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func guestSegue() {
 
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }
 

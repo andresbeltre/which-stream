@@ -3,7 +3,7 @@
 //  Which Stream
 //
 //  Created by Leo Oliveira on 8/24/18.
-//  Copyright © 2018 Whcih. All rights reserved.
+//  Copyright © 2018 Which. All rights reserved.
 //
 
 import Firebase
@@ -24,13 +24,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     var passValid = UIView()
     var retypeValid = UIView()
     
+    let APP_DEFAULTS = AppDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        setupBackgroundGradient()
+        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
         setupLayout()
     }
     
@@ -40,26 +42,44 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
+    /**
+     Detect when keyboard is about to be displayed in view and act accordingly
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func keyboardWillShow(notification: NSNotification) {
-        if (viewMoved != true) {
-            viewMoved = true
+        if (self.viewMoved != true) {
+            self.viewMoved = true
             self.containerView.frame.origin.y -= 150
         }
     }
     
+    /**
+     Detect when keyboard is about to leave the view and act accordingly
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func keyboardWillHide(notification: NSNotification) {
-        if (viewMoved == true) {
-            viewMoved = false
+        if (self.viewMoved == true) {
+            self.viewMoved = false
             self.containerView.frame.origin.y += 150
         }
     }
     
+    /**
+     Sets up the initial elements of the view.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func setupLayout() {
         
         // Create container view
-        containerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        containerView.backgroundColor = .clear
-        self.view.addSubview(containerView)
+        self.containerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.containerView.backgroundColor = .clear
+        self.view.addSubview(self.containerView)
         
         // Create logo image instance
         let whichLogo = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: 80, width: 300, height: 150))
@@ -204,10 +224,22 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         cancelButton.topAnchor.constraint(equalTo: self.retypePassInput.bottomAnchor, constant: 20).isActive = true
     }
     
+    /**
+     Function to dismiss view upon being triggered.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func dismissView() {
         self.navigationController?.popViewController(animated: true)
     }
     
+    /**
+     Sends an activation email to a registering user.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     @objc func sendEmail() {
         if usernameValid.backgroundColor == UIColor.green && emailValid.backgroundColor == UIColor.green && retypeValid.backgroundColor == UIColor.green {
             Auth.auth().createUser(withEmail: emailInput.text!, password: passInput.text!, completion: { (user, authError) in
@@ -245,24 +277,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func setupBackgroundGradient() {
-        self.view.backgroundColor = .clear
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        gradientLayer.colors = [UIColor(hex: "5d0028").cgColor, UIColor(hex: "c96548").cgColor]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    // Dismisses keyboard and removes the focus from a specific text field
+    /**
+     Dismisses keyboard and removes focus from a specific text field.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    /**
+     Detect when a user has finished editing a text field and act accordingly.
+     
+     - Version: 1.0
+     - Author: Leo Oliveira
+     */
     func textFieldDidEndEditing(_ textField: UITextField) {
         if (textField == self.usernameInput) {
             if (!textField.text!.isEmpty) {
