@@ -20,6 +20,7 @@
 		EA25D26321310653007956EA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D26221310653007956EA /* RegisterViewController.swift */; };
 		EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */; };
 		EA95926B4EE80C25C91241CE /* Pods_Which_StreamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E71C656ADE79BCA2A6E49 /* Pods_Which_StreamUITests.framework */; };
+		EAB5270121BD8CD70021A205 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */; };
 		EAD93B6F2153EE95008CF77E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */; };
 		EAD93B7121547846008CF77E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD93B7021547846008CF77E /* MainViewController.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		EA25D260213105C5007956EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA25D26221310653007956EA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassViewController.swift; sourceTree = "<group>"; };
+		EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAD93B7021547846008CF77E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F681FCF50052AB745BB7D5E0 /* Pods-Which Stream.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which Stream.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				EAD93B7021547846008CF77E /* MainViewController.swift */,
 				EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */,
 				EA124AC3218F8F1200B607CB /* AppDefaults.swift */,
+				EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */,
 			);
 			path = "Which Stream";
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			files = (
 				EA124AC4218F8F1200B607CB /* AppDefaults.swift in Sources */,
 				EA25D261213105C6007956EA /* LoginViewController.swift in Sources */,
+				EAB5270121BD8CD70021A205 /* HistoryTableViewCell.swift in Sources */,
 				0EF9B85721054E0D007F9E27 /* IntroViewController.swift in Sources */,
 				EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */,
 				0EF9B85521054E0D007F9E27 /* AppDelegate.swift in Sources */,

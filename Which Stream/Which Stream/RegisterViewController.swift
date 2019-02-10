@@ -45,6 +45,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     /**
      Detect when keyboard is about to be displayed in view and act accordingly
      
+     - Parameter notification: Function trigger
      - Version: 1.0
      - Author: Leo Oliveira
      */
@@ -58,6 +59,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     /**
      Detect when keyboard is about to leave the view and act accordingly
      
+     - Parameter notification: Function trigger
      - Version: 1.0
      - Author: Leo Oliveira
      */
@@ -83,24 +85,21 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         // Create logo image instance
         let whichLogo = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: 80, width: 300, height: 150))
+        whichLogo.image = #imageLiteral(resourceName: "LogoString")
+        whichLogo.contentMode = .scaleAspectFit
         // Add Logo to view
         self.containerView.addSubview(whichLogo)
-        // Add the image to the respective element
-        let logoImage = UIImage(named: "WhichLogo")
-        whichLogo.image = logoImage
-        whichLogo.contentMode = .scaleAspectFit
         
         // Hide navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         // Programatically create buttons, text fields, and labels
         let registerButton = UIButton(type: .system)
         registerButton.setTitleColor(.white, for: .normal)
         registerButton.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
-        
         let cancelButton = UIButton(type: .system)
         cancelButton.setTitleColor(.white, for: .normal)
         cancelButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        
         let usernameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
         usernameLabel.textColor = .white
         let emailLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
@@ -123,7 +122,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.retypePassInput.delegate = self
         self.retypePassInput.textColor = .white
         self.retypePassInput.isSecureTextEntry = true
-        
         self.usernameValid = UIView(frame: CGRect(x: 60, y: self.view.center.y - 65, width: 10, height: 10))
         self.usernameValid.layer.cornerRadius = self.usernameValid.frame.width/2
         self.usernameValid.clipsToBounds = true
@@ -139,6 +137,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.retypeValid.layer.cornerRadius = self.retypeValid.frame.width/2
         self.retypeValid.backgroundColor = .red
         
+        // Assign correct text to respective labels
+        usernameLabel.text = "Username:"
+        emailLabel.text = "Email:"
+        passwordLabel.text = "Password:"
+        retypePasswordLabel.text = "Retype Password:"
+        // Assign correct text to respective buttons
+        registerButton.setTitle("Register", for: .normal)
+        registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
         // Hide the alert buttons from initial load
         self.usernameValid.isHidden = true
@@ -146,19 +154,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.passValid.isHidden = true
         self.retypeValid.isHidden = true
         
-        // Assign correct text to respective labels
-        usernameLabel.text = "Username:"
-        emailLabel.text = "Email:"
-        passwordLabel.text = "Password:"
-        retypePasswordLabel.text = "Retype Password:"
         
-        // Assign correct text to respective buttons
-        registerButton.setTitle("Register", for: .normal)
-        registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        
-        // Add buttons to view
+        // Add elements as subview
         self.containerView.addSubview(registerButton)
         self.containerView.addSubview(cancelButton)
         self.containerView.addSubview(usernameLabel)
@@ -277,12 +274,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    /**
-     Dismisses keyboard and removes focus from a specific text field.
-     
-     - Version: 1.0
-     - Author: Leo Oliveira
-     */
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

@@ -53,15 +53,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func setupLayout() {
         // Create logo image instance
         let whichLogo = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: 80, width: 300, height: 150))
+        whichLogo.image = #imageLiteral(resourceName: "LogoString")
+        whichLogo.contentMode = .scaleAspectFit
         // Add Logo to view
         self.view.addSubview(whichLogo)
-        // Add the image to the respective element
-        let logoImage = UIImage(named: "WhichLogo")
-        whichLogo.image = logoImage
-        whichLogo.contentMode = .scaleAspectFit
         
         // Hide navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         // Programatically create buttons, text fields, and labels
         let loginButton = UIButton(type: .system)
         loginButton.setTitleColor(.white, for: .normal)
@@ -76,6 +75,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         forgotPassButton.setTitleColor(.white, for: .normal)
         forgotPassButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         forgotPassButton.addTarget(self, action: #selector(forgotPassSegue), for: .touchUpInside)
+        // Assign correct text to respective buttons
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        facebookButton.setTitle("Login with Facebook", for: .normal)
+        facebookButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        forgotPassButton.setTitle("Forgot Password?", for: .normal)
         
         
         let separatorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
@@ -97,20 +104,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Assign correct text to respective labels
         separatorLabel.text = "OR"
-        separatorLabel.font = UIFont.systemFont(ofSize: 18)
+        separatorLabel.font = UIFont.boldSystemFont(ofSize: 20)
         emailLabel.text = "Email:"
         passLabel.text = "Password:"
-            
-        // Assign correct text to respective buttons
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        facebookButton.setTitle("Login with Facebook", for: .normal)
-        facebookButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        forgotPassButton.setTitle("Forgot Password?", for: .normal)
         
-        // Add buttons to view
+        // Add elements as subview
         self.view.addSubview(loginButton)
         self.view.addSubview(cancelButton)
         self.view.addSubview(facebookButton)
@@ -162,12 +160,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         forgotPassButton.topAnchor.constraint(equalTo: passInput.bottomAnchor, constant: 5).isActive = true
     }
     
-    /**
-     Dismisses the keyboard and removes the focus from a specific text field.
-     
-     - Version: 1.0
-     - Author: Leo Oliveira
-     */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

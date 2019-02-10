@@ -62,7 +62,11 @@ class IntroViewController: UIViewController {
     func animateIntro() {
         // Create image views for both the logo and the loading indicator
         let whichLogo = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: 80, width: 300, height: 150))
+        whichLogo.image = #imageLiteral(resourceName: "LogoString")
+        whichLogo.contentMode = .scaleAspectFit
         let exclamationMark = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: (self.view.frame.height/2 - 75), width: 300, height: 150))
+        exclamationMark.image = #imageLiteral(resourceName: "LogoIcon")
+        exclamationMark.contentMode = .scaleAspectFit
         
         // Set initial alpha to zero so elements don't appear in view
         whichLogo.alpha = 0
@@ -71,15 +75,6 @@ class IntroViewController: UIViewController {
         // Add Logo and loading indicator to view
         self.view.addSubview(whichLogo)
         self.view.addSubview(exclamationMark)
-        
-        // Add the image to the respective elements
-        let logoImage = UIImage(named: "WhichLogo")
-        whichLogo.image = logoImage
-        whichLogo.contentMode = .scaleAspectFit
-        
-        let exclamationImage = UIImage(named: "ExclamationMark")
-        exclamationMark.image = exclamationImage
-        exclamationMark.contentMode = .scaleAspectFit
         
         // Animate the exclamation mark to repeatedly fade in and out
         UIView.animate(withDuration: 1.2, delay: 0.0, options: [.repeat, .autoreverse], animations: {
@@ -91,7 +86,7 @@ class IntroViewController: UIViewController {
                 // removes the ongoing animation on the element
                 exclamationMark.layer.removeAllAnimations()
                 exclamationMark.alpha = 1
-                exclamationMark.frame.origin.y -= 180
+                exclamationMark.frame.origin.y = 80
             }, completion: { finished in
                 // Upon completion, animate showing up of Wh!ch Logo
                 UIView.animate(withDuration: 1.5, animations: {
@@ -111,17 +106,23 @@ class IntroViewController: UIViewController {
      */
     func setupLayout() {
         // Programatically create buttons
-        let loginButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
+        let loginButton = UIButton(type: .system)
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
         loginButton.titleLabel?.textColor = .white
-        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         loginButton.addTarget(self, action: #selector(loginSegue), for: .touchUpInside)
-        let registerButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
+        let registerButton = UIButton(type: .system)
+        registerButton.setTitleColor(.white, for: .normal)
+        registerButton.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
         registerButton.titleLabel?.textColor = .white
-        registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        registerButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         registerButton.addTarget(self, action: #selector(registerSegue), for: .touchUpInside)
-        let guestButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
+        let guestButton = UIButton(type: .system)
+        guestButton.setTitleColor(.white, for: .normal)
+        guestButton.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
         guestButton.titleLabel?.textColor = .white
-        guestButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20) 
+        guestButton.titleLabel?.font = UIFont.systemFont(ofSize: 20) 
         guestButton.addTarget(self, action: #selector(guestSegue), for: .touchUpInside)
         
         // Assign correct text to respective buttons
@@ -136,6 +137,7 @@ class IntroViewController: UIViewController {
         loginButton.alpha = 0
         registerButton.alpha = 0
         guestButton.alpha = 0
+        
         // Add buttons to view
         self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
@@ -197,7 +199,7 @@ class IntroViewController: UIViewController {
      - Author: Leo Oliveira
      */
     @objc func guestSegue() {
-
+        self.navigationController?.pushViewController(MainViewController(), animated: true)
     }
     
 }

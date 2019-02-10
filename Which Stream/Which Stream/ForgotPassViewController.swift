@@ -10,10 +10,12 @@ import UIKit
 
 class ForgotPassViewController: UIViewController, UITextFieldDelegate {
     
+    let APP_DEFAULTS = AppDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBackgroundGradient()
+        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
         setupLayout()
     }
     
@@ -42,14 +44,14 @@ class ForgotPassViewController: UIViewController, UITextFieldDelegate {
         submitButton.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
         submitButton.setTitle("Submit", for: .normal)
         submitButton.setTitleColor(.white, for: .normal)
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        submitButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         submitButton.titleLabel?.textAlignment = .right
         let cancelButton = UIButton(type: .system)
         cancelButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         cancelButton.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
-        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitle("Back to Login", for: .normal)
         cancelButton.setTitleColor(.white, for: .normal)
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         cancelButton.titleLabel?.textAlignment = .right
         
         // Add elements as subviews
@@ -84,28 +86,11 @@ class ForgotPassViewController: UIViewController, UITextFieldDelegate {
         submitButton.topAnchor.constraint(equalTo: emailInput.bottomAnchor, constant: 10).isActive = true
         submitButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -80).isActive = true
         
-        cancelButton.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 5).isActive = true
+        cancelButton.topAnchor.constraint(equalTo: submitButton.bottomAnchor).isActive = true
         cancelButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -80).isActive = true
         
     }
     
-    /**
-     Creates a color gradient and sets it as the background
-     
-     - Version: 1.0
-     - Author: Leo Oliveira
-     */
-    func setupBackgroundGradient() {
-        self.view.backgroundColor = .clear
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        gradientLayer.colors = [UIColor(hex: "5d0028").cgColor, UIColor(hex: "c96548").cgColor]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
-    }
     
     /**
      Function to dismiss view upon being called
