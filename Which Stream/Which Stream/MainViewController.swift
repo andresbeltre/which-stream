@@ -9,8 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    let APP_DEFAULTS = AppDefaults()
+    var APP_DEFAULTS: AppDefaults!
     
     /// Container to hold view and allow for synchronized movement with menu
     var viewContainer: UIView!
@@ -26,18 +25,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var sideMenuButton: UIButton!
     /// Side menu to display extra information
     var sideMenu: UIView!
-    /// Constraint for side menu (required for changing view location)
-    var sideMenuLeftAnchorConstraint: NSLayoutConstraint!
-    /// Constraint for side menu button (required for moving button)
-    var sideMenuButtonRightAnchorConstraint: NSLayoutConstraint!
-    /// Gesture to dismiss the side menu if it is currently present
-    var dismissMenuGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .white
-        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
+        // ---------- Initialize properties of current view ---------- \\
+        APP_DEFAULTS = AppDefaults(viewController: self, currentVC: MAIN_VC)
         self.setupLayout()
     }
     
@@ -49,10 +42,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
      */
     func setupLayout() {
         // Instantiate view elements
-        self.viewContainer = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.viewContainer.center.x = self.view.center.x
-        self.viewContainer.center.y = self.view.center.y
-        self.viewContainer = APP_DEFAULTS.setupBackgroundGradientFor(view: self.viewContainer)
+        self.viewContainer = APP_DEFAULTS.setupViewContainerFor(viewController: self)
+        _ = self.APP_DEFAULTS.setupSideMenuFor(viewController: self)
+        self.sideMenuButton = self.APP_DEFAULTS.sideMenuButton
         
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.tableView.delegate = self
@@ -75,18 +67,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.lastWatched.text = "Last watched show"
         self.lastWatched.textColor = .white
         self.lastWatched.font = UIFont.italicSystemFont(ofSize: 18)
-        
-        self.sideMenu =  UIView(frame: CGRect(x: 0, y: 0, width: 200, height: self.view.frame.height))
-        self.sideMenu = APP_DEFAULTS.setupSideMenuFor(view: self.sideMenu)
-        self.dismissMenuGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuIfVisible))
-        self.dismissMenuGesture.cancelsTouchesInView = true
-        self.viewContainer.addGestureRecognizer(dismissMenuGesture)
-    
-        self.sideMenuButton = UIButton(type: .system)
-        self.sideMenuButton.setTitle("\u{2261}", for: .normal)
-        self.sideMenuButton.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .bold)
-        self.sideMenuButton.setTitleColor(.white, for: .normal)
-        self.sideMenuButton.addTarget(self, action: #selector(triggerMenu), for: .touchUpInside)
 
         let blur = UIBlurEffect(style: .extraLight)
         let blurView = UIVisualEffectView(effect: blur)
@@ -94,38 +74,19 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         blurView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 110)
 
         // Add elements as subviews
-        self.view.addSubview(self.viewContainer)
         self.viewContainer.addSubview(blurView)
         self.viewContainer.addSubview(self.profile)
         self.viewContainer.addSubview(self.name)
         self.viewContainer.addSubview(self.lastWatched)
         self.viewContainer.addSubview(self.tableView)
-        self.view.addSubview(self.sideMenuButton)
-        self.view.addSubview(self.sideMenu)
         self.view.bringSubview(toFront: self.sideMenuButton)
         
         // Add constraints
-        self.sideMenu.translatesAutoresizingMaskIntoConstraints = false
-        self.sideMenuButton.translatesAutoresizingMaskIntoConstraints = false
         blurView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.profile.translatesAutoresizingMaskIntoConstraints = false
         self.name.translatesAutoresizingMaskIntoConstraints = false
         self.lastWatched.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        self.sideMenu.topAnchor.constraint(equalTo: self.viewContainer.topAnchor).isActive = true
-        self.sideMenu.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        self.sideMenu.heightAnchor.constraint(equalToConstant: self.view.frame.height).isActive = true
-        self.sideMenu.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        self.sideMenuLeftAnchorConstraint = self.sideMenu.leftAnchor.constraint(equalTo: self.view.rightAnchor)
-        self.sideMenuLeftAnchorConstraint.isActive = true
-        
-        self.sideMenuButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 45).isActive = true
-        self.sideMenuButtonRightAnchorConstraint = self.sideMenuButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10)
-        self.sideMenuButtonRightAnchorConstraint.isActive = true
-        self.sideMenuButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        self.sideMenuButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         
         blurView.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor).isActive = true
         blurView.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor).isActive = true
@@ -151,53 +112,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.viewContainer.bottomAnchor).isActive = true
-    }
-    
-    /**
-     Custom actions upon being triggered by side menu button.
-     
-     - Version: 1.0
-     - Author: Leo Oliveira
-     */
-    @objc func triggerMenu() {
-        UIView.animate(withDuration: 0.75, animations: {
-            if (self.sideMenu.center.x > self.view.frame.maxX) {
-                self.sideMenuLeftAnchorConstraint.isActive = false
-                self.sideMenuButtonRightAnchorConstraint.isActive = false
-//                self.viewContainer.center.x -= 200
-                self.sideMenu.center.x -= 200
-                self.sideMenuButton.center.x -= 130
-                self.sideMenuButton.setTitle("x", for: .normal)
-                self.sideMenuButton.setTitleColor(.black, for: .normal)
-                self.sideMenuLeftAnchorConstraint.constant = -200
-                self.sideMenuButtonRightAnchorConstraint.constant -= 130
-                self.sideMenuLeftAnchorConstraint.isActive = true
-                self.sideMenuButtonRightAnchorConstraint.isActive = true
-            } else {
-                self.dismissMenuIfVisible()
-            }
-        })
-    }
-    
-    @objc func dismissMenuIfVisible() {
-        UIView.animate(withDuration: 0.75, animations: {
-            if (self.sideMenu.center.x < self.view.frame.maxX) {
-                self.dismissMenuGesture.cancelsTouchesInView = true
-                self.sideMenuLeftAnchorConstraint.isActive = false
-                self.sideMenuButtonRightAnchorConstraint.isActive = false
-                //                self.viewContainer.center.x += 200
-                self.sideMenu.center.x += 200
-                self.sideMenuButton.center.x += 130
-                self.sideMenuButton.setTitle("\u{2261}", for: .normal)
-                self.sideMenuButton.setTitleColor(.white, for: .normal)
-                self.sideMenuLeftAnchorConstraint.constant = 0
-                self.sideMenuButtonRightAnchorConstraint.constant = -10
-                self.sideMenuLeftAnchorConstraint.isActive = true
-                self.sideMenuButtonRightAnchorConstraint.isActive = true
-            } else {
-                self.dismissMenuGesture.cancelsTouchesInView = false
-            }
-        })
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

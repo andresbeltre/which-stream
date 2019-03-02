@@ -250,9 +250,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //                    print(FBSDKProfile.current().userID)
 //                    print(FBSDKProfile.current().name)
                     let dictResult = result as! NSDictionary
-                    print(dictResult["email"])
-                    print(dictResult["id"])
-                    print(dictResult["name"])
+                    print(dictResult["email"]!)
+                    print(dictResult["id"]!)
+                    print(dictResult["name"]!)
                 }
             })
         }
