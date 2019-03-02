@@ -65,7 +65,7 @@ class IntroViewController: UIViewController {
         whichLogo.image = #imageLiteral(resourceName: "LogoString")
         whichLogo.contentMode = .scaleAspectFit
         let exclamationMark = UIImageView(frame: CGRect(x: (self.view.frame.width/2 - 150), y: (self.view.frame.height/2 - 75), width: 300, height: 150))
-        exclamationMark.image = #imageLiteral(resourceName: "LogoIcon")
+        exclamationMark.image = UIImage(named: "IntroLogoIcon")
         exclamationMark.contentMode = .scaleAspectFit
         
         // Set initial alpha to zero so elements don't appear in view
