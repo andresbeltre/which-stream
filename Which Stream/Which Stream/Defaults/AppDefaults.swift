@@ -253,6 +253,8 @@ class AppDefaults {
                 removeFromStack(kind: MainViewController.self)
             case SHARING_VC:
                 removeFromStack(kind: SharingViewController.self)
+            case DISCOVER_VC:
+                removeFromStack(kind: DiscoverViewController.self)
             default:
                 break
         }
