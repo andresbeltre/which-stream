@@ -10,6 +10,7 @@ import UIKit
 
 let MAIN_VC = "MAIN_VC"
 let SHARING_VC = "SHARING_VC"
+let DISCOVER_VC = "DISCOVER_VC"
 
 class AppDefaults {
     var sideMenuLeftAnchorConstraint: NSLayoutConstraint!
@@ -206,7 +207,12 @@ class AppDefaults {
     }
     
     @objc func toDiscoverVC() {
-        
+        if (self.currentVC != DISCOVER_VC) {
+            self.isInStack(newVC: DISCOVER_VC)
+            self.navigationController.pushViewController(DiscoverViewController(), animated: true)
+        } else {
+            self.dismissMenuIfVisible()
+        }
     }
     
     @objc func toQueueVC() {
