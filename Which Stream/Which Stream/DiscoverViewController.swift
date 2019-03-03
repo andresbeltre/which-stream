@@ -46,7 +46,7 @@ class DiscoverViewController: UIViewController {
         super.viewDidLoad()
         
         // ---------- Initialize properties of current view ---------- \\
-        APP_DEFAULTS = AppDefaults(viewController: self, currentVC: SHARING_VC)
+        APP_DEFAULTS = AppDefaults(viewController: self, currentVC: DISCOVER_VC)
         self.setupLayout()
     }
     
