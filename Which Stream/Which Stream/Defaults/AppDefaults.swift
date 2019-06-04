@@ -11,6 +11,7 @@ import UIKit
 let MAIN_VC = "MAIN_VC"
 let SHARING_VC = "SHARING_VC"
 let DISCOVER_VC = "DISCOVER_VC"
+let SEARCH_VC = "SEARCH_VC"
 
 class AppDefaults {
     var sideMenuLeftAnchorConstraint: NSLayoutConstraint!
@@ -47,7 +48,7 @@ class AppDefaults {
         viewController!.view.addSubview(self.sideMenuButton)
         
         self.sideMenuButton.translatesAutoresizingMaskIntoConstraints = false
-        self.sideMenuButton.topAnchor.constraint(equalTo: viewController!.view.topAnchor, constant: 45).isActive = true
+        self.sideMenuButton.topAnchor.constraint(equalTo: viewController!.view.topAnchor, constant: UIApplication.shared.statusBarFrame.height + 5).isActive = true
         self.sideMenuButtonRightAnchorConstraint = self.sideMenuButton.rightAnchor.constraint(equalTo: viewController!.view.rightAnchor, constant: -10)
         self.sideMenuButtonRightAnchorConstraint.isActive = true
         self.sideMenuButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
@@ -220,7 +221,12 @@ class AppDefaults {
     }
     
     @objc func toSearchVC() {
-        
+        if (self.currentVC != SEARCH_VC) {
+            self.isInStack(newVC: SEARCH_VC)
+            self.navigationController.pushViewController(SearchViewController(), animated: true)
+        } else {
+            self.dismissMenuIfVisible()
+        }
     }
     
     @objc func toSupportVC() {

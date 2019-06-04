@@ -51,6 +51,7 @@ class DiscoverViewController: UIViewController {
     }
     
     
+    
     func setupLayout() {
         // Instantiate view elements
         self.viewContainer = APP_DEFAULTS.setupViewContainerFor(viewController: self)
