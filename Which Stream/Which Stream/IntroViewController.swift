@@ -199,7 +199,7 @@ class IntroViewController: UIViewController {
      - Author: Leo Oliveira
      */
     @objc func guestSegue() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.navigationController?.pushViewController(HistoryViewController(), animated: true)
     }
     
 }
