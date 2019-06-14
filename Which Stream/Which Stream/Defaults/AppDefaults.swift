@@ -8,10 +8,11 @@
 
 import UIKit
 
-let MAIN_VC = "MAIN_VC"
+let HISTORY_VC = "HISTORY_VC"
 let SHARING_VC = "SHARING_VC"
 let DISCOVER_VC = "DISCOVER_VC"
 let SEARCH_VC = "SEARCH_VC"
+let FRIENDS_FEED_VC = "FRIENDS_FEED_VC"
 
 class AppDefaults {
     var sideMenuLeftAnchorConstraint: NSLayoutConstraint!
@@ -41,14 +42,14 @@ class AppDefaults {
         
         self.sideMenuButton = UIButton(type: .system)
         self.sideMenuButton.setTitle("\u{2261}", for: .normal)
-        self.sideMenuButton.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        self.sideMenuButton.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         self.sideMenuButton.setTitleColor(.white, for: .normal)
         self.sideMenuButton.addTarget(self, action: #selector(triggerMenu), for: .touchUpInside)
         
         viewController!.view.addSubview(self.sideMenuButton)
         
         self.sideMenuButton.translatesAutoresizingMaskIntoConstraints = false
-        self.sideMenuButton.topAnchor.constraint(equalTo: viewController!.view.topAnchor, constant: UIApplication.shared.statusBarFrame.height + 5).isActive = true
+        self.sideMenuButton.topAnchor.constraint(equalTo: viewController!.view.topAnchor, constant: UIApplication.shared.statusBarFrame.height).isActive = true
         self.sideMenuButtonRightAnchorConstraint = self.sideMenuButton.rightAnchor.constraint(equalTo: viewController!.view.rightAnchor, constant: -10)
         self.sideMenuButtonRightAnchorConstraint.isActive = true
         self.sideMenuButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
@@ -137,13 +138,14 @@ class AppDefaults {
     }
     
     func setupSideMenuFor(viewController: UIViewController?) -> UIView {
-        var profileBtn, feedBtn, sharingBtn, discoverBtn, queueBtn, searchBtn: UIButton!
+        var profileBtn, historyBtn, feedBtn, sharingBtn, discoverBtn, queueBtn, searchBtn: UIButton!
         var supportBtn, legalBtn, termsBtn, privacyBtn, notificationsBtn, logoutBtn: UIButton!
         self.sideMenu = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: viewController!.view.frame.height))
         self.sideMenu.backgroundColor = .white
         self.sideMenu.alpha = 0.70
         
         profileBtn = createMenuButton(in: self.sideMenu, withTitle: "Your Profile", forNavigateToPage: "PROFILE")
+        historyBtn = createMenuButton(in: self.sideMenu, withTitle: "History", forNavigateToPage: "HISTORY")
         feedBtn = createMenuButton(in: self.sideMenu, withTitle: "Friends Feed", forNavigateToPage: "FEED")
         sharingBtn = createMenuButton(in: self.sideMenu, withTitle: "Which Sharing", forNavigateToPage: "SHARING")
         discoverBtn = createMenuButton(in: self.sideMenu, withTitle: "Discover", forNavigateToPage: "DISCOVER")
@@ -157,6 +159,7 @@ class AppDefaults {
         logoutBtn = createMenuButton(in: self.sideMenu, withTitle: "Logout", forNavigateToPage: "LOGOUT")
         
         self.sideMenu.addSubview(profileBtn)
+        self.sideMenu.addSubview(historyBtn)
         self.sideMenu.addSubview(feedBtn)
         self.sideMenu.addSubview(sharingBtn)
         self.sideMenu.addSubview(discoverBtn)
@@ -189,10 +192,19 @@ class AppDefaults {
         
     }
     
+    @objc func toHistoryVC(navigationController: UINavigationController) {
+        if (self.currentVC != HISTORY_VC) {
+            self.isInStack(newVC: HISTORY_VC)
+            self.navigationController.pushViewController(HistoryViewController(), animated: true)
+        } else {
+            self.dismissMenuIfVisible()
+        }
+    }
+    
     @objc func toFeedVC(navigationController: UINavigationController) {
-        if (self.currentVC != MAIN_VC) {
-            self.isInStack(newVC: MAIN_VC)
-            self.navigationController.pushViewController(MainViewController(), animated: true)
+        if (self.currentVC != FRIENDS_FEED_VC) {
+            self.isInStack(newVC: FRIENDS_FEED_VC)
+            self.navigationController.pushViewController(FriendsFeedViewController(), animated: true)
         } else {
             self.dismissMenuIfVisible()
         }
@@ -255,8 +267,10 @@ class AppDefaults {
     
     fileprivate func isInStack(newVC: String) {
         switch newVC {
-            case MAIN_VC:
-                removeFromStack(kind: MainViewController.self)
+            case HISTORY_VC:
+                removeFromStack(kind: HistoryViewController.self)
+            case FRIENDS_FEED_VC:
+                removeFromStack(kind: FriendsFeedViewController.self)
             case SHARING_VC:
                 removeFromStack(kind: SharingViewController.self)
             case DISCOVER_VC:
@@ -287,40 +301,43 @@ class AppDefaults {
         
         switch page {
             case "PROFILE":
-                btn.frame = CGRect(x: leftSideSpacing, y: 100, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 90, width: width, height: height)
                 btn.addTarget(self, action: #selector(toProfileVC), for: .touchUpInside)
+            case "HISTORY":
+                btn.frame = CGRect(x: leftSideSpacing, y: 130, width: width, height: height)
+                btn.addTarget(self, action: #selector(toHistoryVC), for: .touchUpInside)
             case "FEED":
-                btn.frame = CGRect(x: leftSideSpacing, y: 140, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 170, width: width, height: height)
                 btn.addTarget(self, action: #selector(toFeedVC), for: .touchUpInside)
             case "SHARING":
-                btn.frame = CGRect(x: leftSideSpacing, y: 180, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 210, width: width, height: height)
                 btn.addTarget(self, action: #selector(toSharingVC), for: .touchUpInside)
             case "DISCOVER":
-                btn.frame = CGRect(x: leftSideSpacing, y: 220, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 250, width: width, height: height)
                 btn.addTarget(self, action: #selector(toDiscoverVC), for: .touchUpInside)
             case "QUEUE":
-                btn.frame = CGRect(x: leftSideSpacing, y: 260, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 290, width: width, height: height)
                 btn.addTarget(self, action: #selector(toQueueVC), for: .touchUpInside)
             case "SEARCH":
-                btn.frame = CGRect(x: leftSideSpacing, y: 300, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 330, width: width, height: height)
                 btn.addTarget(self, action: #selector(toSearchVC), for: .touchUpInside)
             case "SUPPORT":
-                btn.frame = CGRect(x: leftSideSpacing, y: 380, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 410, width: width, height: height)
                 btn.addTarget(self, action: #selector(toSupportVC), for: .touchUpInside)
             case "LEGAL":
-                btn.frame = CGRect(x: leftSideSpacing, y: 420, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 450, width: width, height: height)
                 btn.addTarget(self, action: #selector(toLegalVC), for: .touchUpInside)
             case "TERMS":
-                btn.frame = CGRect(x: leftSideSpacing, y: 460, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 490, width: width, height: height)
                 btn.addTarget(self, action: #selector(toTermsVC), for: .touchUpInside)
             case "PRIVACY":
-                btn.frame = CGRect(x: leftSideSpacing, y: 500, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 530, width: width, height: height)
                 btn.addTarget(self, action: #selector(toPrivacyVC), for: .touchUpInside)
             case "NOTIFICATIONS":
-                btn.frame = CGRect(x: leftSideSpacing, y: 540, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 570, width: width, height: height)
                 btn.addTarget(self, action: #selector(toNotificationsVC), for: .touchUpInside)
             case "LOGOUT":
-                btn.frame = CGRect(x: leftSideSpacing, y: 580, width: width, height: height)
+                btn.frame = CGRect(x: leftSideSpacing, y: 610, width: width, height: height)
                 btn.addTarget(self, action: #selector(toLogoutVC), for: .touchUpInside)
             default:
                 break

@@ -181,7 +181,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if let user = Auth.auth().currentUser {
                     if user.isEmailVerified {
                         if error == nil {
-                            self.navigationController?.pushViewController(MainViewController(), animated: true)
+                            self.navigationController?.pushViewController(HistoryViewController(), animated: true)
                         } else {
                             let alert = UIAlertController(title: "Error", message: "Invalid email or password. Please check your input and try again", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
