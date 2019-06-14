@@ -21,10 +21,11 @@
 		EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */; };
 		EA4C5203222C41EF0002FFDE /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4C5202222C41EF0002FFDE /* DiscoverViewController.swift */; };
 		EA95926B4EE80C25C91241CE /* Pods_Which_StreamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E71C656ADE79BCA2A6E49 /* Pods_Which_StreamUITests.framework */; };
+		EAA63F4522A609AA0015C43E /* FriendsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA63F4422A609AA0015C43E /* FriendsFeedViewController.swift */; };
 		EAB5270121BD8CD70021A205 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */; };
 		EAD5ACE22210984600961A32 /* SharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5ACE12210984600961A32 /* SharingViewController.swift */; };
 		EAD93B6F2153EE95008CF77E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */; };
-		EAD93B7121547846008CF77E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD93B7021547846008CF77E /* MainViewController.swift */; };
+		EAD93B7121547846008CF77E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD93B7021547846008CF77E /* HistoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,10 +70,11 @@
 		EA25D26221310653007956EA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassViewController.swift; sourceTree = "<group>"; };
 		EA4C5202222C41EF0002FFDE /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		EAA63F4422A609AA0015C43E /* FriendsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFeedViewController.swift; sourceTree = "<group>"; };
 		EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		EAD5ACE12210984600961A32 /* SharingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewController.swift; sourceTree = "<group>"; };
 		EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		EAD93B7021547846008CF77E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EAD93B7021547846008CF77E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F681FCF50052AB745BB7D5E0 /* Pods-Which Stream.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which Stream.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream.debug.xcconfig"; sourceTree = "<group>"; };
 		F73EF4424E0E5E14F04DAD21 /* Pods-Which StreamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which StreamTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which StreamTests/Pods-Which StreamTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,11 +142,12 @@
 				EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */,
 				EA25D260213105C5007956EA /* LoginViewController.swift */,
 				EA25D26221310653007956EA /* RegisterViewController.swift */,
-				EAD93B7021547846008CF77E /* MainViewController.swift */,
+				EAD93B7021547846008CF77E /* HistoryViewController.swift */,
 				EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */,
 				EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */,
 				EAD5ACE12210984600961A32 /* SharingViewController.swift */,
 				EA4C5202222C41EF0002FFDE /* DiscoverViewController.swift */,
+				EAA63F4422A609AA0015C43E /* FriendsFeedViewController.swift */,
 			);
 			path = "Which Stream";
 			sourceTree = "<group>";
@@ -520,7 +523,8 @@
 				EAD5ACE22210984600961A32 /* SharingViewController.swift in Sources */,
 				0EF9B85521054E0D007F9E27 /* AppDelegate.swift in Sources */,
 				EA25D26321310653007956EA /* RegisterViewController.swift in Sources */,
-				EAD93B7121547846008CF77E /* MainViewController.swift in Sources */,
+				EAA63F4522A609AA0015C43E /* FriendsFeedViewController.swift in Sources */,
+				EAD93B7121547846008CF77E /* HistoryViewController.swift in Sources */,
 				EA4C5203222C41EF0002FFDE /* DiscoverViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

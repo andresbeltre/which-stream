@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  HistoryViewController.swift
 //  Which Stream
 //
 //  Created by Leo Oliveira on 9/20/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var APP_DEFAULTS: AppDefaults!
     
     /// Container to hold view and allow for synchronized movement with menu
@@ -30,7 +30,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         // ---------- Initialize properties of current view ---------- \\
-        APP_DEFAULTS = AppDefaults(viewController: self, currentVC: MAIN_VC)
+        APP_DEFAULTS = AppDefaults(viewController: self, currentVC: HISTORY_VC)
         self.setupLayout()
     }
     
@@ -59,7 +59,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.profile.clipsToBounds = true
         
         self.name = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        self.name.text = "Firstname Lastname"
+        self.name.text = "Firstname Lastname Another Last Name"
         self.name.textColor = .white
         self.name.font = UIFont.systemFont(ofSize: 22)
         
@@ -91,9 +91,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         blurView.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor).isActive = true
         blurView.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor).isActive = true
         blurView.topAnchor.constraint(equalTo: self.viewContainer.topAnchor).isActive = true
-        blurView.bottomAnchor.constraint(equalTo: self.tableView.topAnchor).isActive = true
-        
-        self.profile.topAnchor.constraint(equalTo: self.viewContainer.topAnchor, constant: 45).isActive = true
+        blurView.heightAnchor.constraint(equalToConstant: UIApplication.shared.statusBarFrame.height+120).isActive = true
+
+        self.profile.topAnchor.constraint(equalTo: self.viewContainer.topAnchor, constant: UIApplication.shared.statusBarFrame.height+30).isActive = true
         self.profile.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor, constant: 10).isActive = true
         self.profile.heightAnchor.constraint(equalToConstant: 75).isActive = true
         self.profile.widthAnchor.constraint(equalToConstant: 75).isActive = true
@@ -108,7 +108,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.lastWatched.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor, constant: -25).isActive = true
         self.lastWatched.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
-        self.tableView.topAnchor.constraint(equalTo: self.profile.bottomAnchor, constant: 10).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: blurView.bottomAnchor).isActive = true
         self.tableView.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.viewContainer.bottomAnchor).isActive = true
