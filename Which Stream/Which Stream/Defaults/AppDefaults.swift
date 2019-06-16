@@ -11,6 +11,7 @@ import UIKit
 let HISTORY_VC = "HISTORY_VC"
 let SHARING_VC = "SHARING_VC"
 let DISCOVER_VC = "DISCOVER_VC"
+let SEARCH_VC = "SEARCH_VC"
 let FRIENDS_FEED_VC = "FRIENDS_FEED_VC"
 
 class AppDefaults {
@@ -232,7 +233,12 @@ class AppDefaults {
     }
     
     @objc func toSearchVC() {
-        
+        if (self.currentVC != SEARCH_VC) {
+            self.isInStack(newVC: SEARCH_VC)
+            self.navigationController.pushViewController(SearchViewController(), animated: true)
+        } else {
+            self.dismissMenuIfVisible()
+        }
     }
     
     @objc func toSupportVC() {

@@ -15,6 +15,8 @@
 		0EF9B87521054E13007F9E27 /* Which_StreamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF9B87421054E13007F9E27 /* Which_StreamUITests.swift */; };
 		3BB92C96E8862DAA7D861320 /* Pods_Which_StreamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88E879AF5AEF2989F6EBEB3 /* Pods_Which_StreamTests.framework */; };
 		CF513A26C2406A9F1114F9E6 /* Pods_Which_Stream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0936D2EB0BC851181D419D /* Pods_Which_Stream.framework */; };
+		EA00FBA32283AD0A0016057A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00FBA22283AD090016057A /* SearchViewController.swift */; };
+		EA00FBA622870BE20016057A /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00FBA522870BE20016057A /* Content.swift */; };
 		EA124AC4218F8F1200B607CB /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA124AC3218F8F1200B607CB /* AppDefaults.swift */; };
 		EA25D261213105C6007956EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D260213105C5007956EA /* LoginViewController.swift */; };
 		EA25D26321310653007956EA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D26221310653007956EA /* RegisterViewController.swift */; };
@@ -65,6 +67,8 @@
 		C335E3DFD6AA1EB9BFE8DBD0 /* Pods-Which StreamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which StreamUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which StreamUITests/Pods-Which StreamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C88E879AF5AEF2989F6EBEB3 /* Pods_Which_StreamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Which_StreamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B4C5A9BE6D8BF05E0BE80A /* Pods-Which Stream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which Stream.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream.release.xcconfig"; sourceTree = "<group>"; };
+		EA00FBA22283AD090016057A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		EA00FBA522870BE20016057A /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		EA124AC3218F8F1200B607CB /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		EA25D260213105C5007956EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA25D26221310653007956EA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */,
 				EAD5ACE12210984600961A32 /* SharingViewController.swift */,
 				EA4C5202222C41EF0002FFDE /* DiscoverViewController.swift */,
+				EA00FBA22283AD090016057A /* SearchViewController.swift */,
+				EA00FBA522870BE20016057A /* Content.swift */,
 				EAA63F4422A609AA0015C43E /* FriendsFeedViewController.swift */,
 			);
 			path = "Which Stream";
@@ -516,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA124AC4218F8F1200B607CB /* AppDefaults.swift in Sources */,
+				EA00FBA32283AD0A0016057A /* SearchViewController.swift in Sources */,
 				EA25D261213105C6007956EA /* LoginViewController.swift in Sources */,
 				EAB5270121BD8CD70021A205 /* HistoryTableViewCell.swift in Sources */,
 				0EF9B85721054E0D007F9E27 /* IntroViewController.swift in Sources */,
@@ -526,6 +533,7 @@
 				EAA63F4522A609AA0015C43E /* FriendsFeedViewController.swift in Sources */,
 				EAD93B7121547846008CF77E /* HistoryViewController.swift in Sources */,
 				EA4C5203222C41EF0002FFDE /* DiscoverViewController.swift in Sources */,
+				EA00FBA622870BE20016057A /* Content.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
