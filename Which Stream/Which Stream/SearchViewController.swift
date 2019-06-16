@@ -8,14 +8,7 @@
 
 import UIKit
 
-extension SearchViewController: UISearchResultsUpdating {
-    /// UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-}
-
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var APP_DEFAULTS: AppDefaults!
     /// Container to hold view and allow for synchronized movement with menu
@@ -26,8 +19,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var sideMenu: UIView!
     /// Table to display tv show history
     var tableView: UITableView!
-    /// Search Controller
-    let searchController = UISearchController(searchResultsController: nil)
+    /// Search Bar
+    var searchBar: UISearchBar!
+    /// Boolean check for searchbar filtering
+    var isSearching = false
     /// Array to hold content filtered from search
     var filteredContent = [Content]()
     
@@ -51,32 +46,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         APP_DEFAULTS = AppDefaults(viewController: self, currentVC: SEARCH_VC)
         self.setupLayout()
         
-        // ---------- Navigation Bar configuration ---------- \\
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIApplication.shared.statusBarFrame.height + 45))
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationItem.titleView = self.searchController.searchBar
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem?.tintColor = .clear
         definesPresentationContext = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    @objc func redirectBarButtonTap() {
-        self.sideMenuButton.sendActions(for: .touchUpInside)
     }
     
     func setupLayout() {
@@ -92,12 +62,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.separatorColor = .white
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        self.searchController.delegate = self
-        self.searchController.searchResultsUpdater = self
-        self.searchController.obscuresBackgroundDuringPresentation = false
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.searchBar.placeholder = "Search Movies, TV Shows and more..."
-        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        self.searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.viewContainer.frame.width, height: 20))
+        self.searchBar.delegate = self
+        self.searchBar.placeholder = "Search Movies, TV Shows and more..."
+        self.searchBar.backgroundImage = UIImage()
+        self.searchBar.tintColor = .white
+        self.searchBar.barStyle = .blackOpaque
+        let searchBarTextField = self.searchBar.value(forKey: "searchField") as? UITextField
+        searchBarTextField?.textColor = .white
+        let searchBarPlaceholder = searchBarTextField!.value(forKey: "placeholderLabel") as? UILabel
+        searchBarPlaceholder?.textColor = UIColor(white: 1, alpha: 0.75)
+        let searchIcon = searchBarTextField?.leftView as? UIImageView
+        searchIcon?.image = searchIcon?.image?.withRenderingMode(.alwaysTemplate)
+        searchIcon?.tintColor = UIColor(white: 1, alpha: 0.75)
+        let clearIcon = searchBarTextField?.value(forKey: "clearButton") as? UIButton
+        clearIcon?.setImage(UIImage(named: "ClearButton"), for: .normal)
+        clearIcon?.currentImage?.withRenderingMode(.alwaysTemplate)
+        clearIcon?.tintColor = UIColor(white: 1, alpha: 0.75)
         
         let blur = UIBlurEffect(style: .extraLight)
         let blurView = UIVisualEffectView(effect: blur)
@@ -106,14 +87,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Add elements as subview
         self.viewContainer.addSubview(blurView)
+        self.view.addSubview(self.searchBar)
         self.viewContainer.addSubview(self.tableView)
+        self.view.bringSubview(toFront: self.searchBar)
+        self.view.bringSubview(toFront: self.sideMenu)
         self.view.bringSubview(toFront: self.sideMenuButton)
+        
         
         // Add constraints
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         blurView.translatesAutoresizingMaskIntoConstraints = false
+        self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         
-        self.tableView.topAnchor.constraint(equalTo: self.viewContainer.topAnchor, constant: UIApplication.shared.statusBarFrame.height + 75).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: blurView.bottomAnchor).isActive = true
         self.tableView.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.viewContainer.bottomAnchor).isActive = true
@@ -121,29 +107,55 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         blurView.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor).isActive = true
         blurView.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor).isActive = true
         blurView.topAnchor.constraint(equalTo: self.viewContainer.topAnchor).isActive = true
-        blurView.bottomAnchor.constraint(equalTo: self.tableView.topAnchor).isActive = true
-    }
-    
-    
-    func isSearchBarEmpty() -> Bool {
-        return self.searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredContent = self.content.filter({( c : Content ) -> Bool in
-            return c.title.lowercased().contains(searchText.lowercased())
-        })
+        blurView.heightAnchor.constraint(equalToConstant: UIApplication.shared.statusBarFrame.height+120).isActive = true
         
+        self.searchBar.leftAnchor.constraint(equalTo: self.viewContainer.leftAnchor).isActive = true
+        self.searchBar.rightAnchor.constraint(equalTo: self.viewContainer.rightAnchor).isActive = true
+        self.searchBar.bottomAnchor.constraint(equalTo: self.tableView.topAnchor, constant: -30).isActive = true
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.isSearching = false
+        self.searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.setShowsCancelButton(false, animated: true)
+        self.isSearching = false
+        self.searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.setShowsCancelButton(false, animated: true)
+        self.searchBar.text = ""
+        self.isSearching = false
+        self.searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (self.searchBar.text?.count == 0) {
+            self.isSearching = false
+        } else {
+            self.filteredContent = self.content.filter({( c : Content ) -> Bool in
+                return c.title.lowercased().contains(searchText.lowercased())
+            })
+            
+            if (self.filteredContent.count == 0) {
+                self.isSearching = false
+            } else {
+                self.isSearching = true
+            }
+        }
         self.tableView.reloadData()
     }
     
-    func isFilteringContent() -> Bool {
-        return self.searchController.isActive && !isSearchBarEmpty()
-    }
-    
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (isFilteringContent()) {
+        if (self.isSearching) {
             return self.filteredContent.count
         }
         
@@ -153,9 +165,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         cell.backgroundColor = .clear
+        cell.textLabel!.textColor = .white
+        
         
         let content: Content
-        if (isFilteringContent()) {
+        if (self.isSearching) {
             content = self.filteredContent[indexPath.row]
         } else {
             content = self.content[indexPath.row]
