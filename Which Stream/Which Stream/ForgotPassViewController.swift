@@ -15,7 +15,7 @@ class ForgotPassViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
+        self.view.setBackgroundGradient()
         setupLayout()
     }
     

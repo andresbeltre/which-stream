@@ -17,6 +17,9 @@
 		CF513A26C2406A9F1114F9E6 /* Pods_Which_Stream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0936D2EB0BC851181D419D /* Pods_Which_Stream.framework */; };
 		EA00FBA32283AD0A0016057A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00FBA22283AD090016057A /* SearchViewController.swift */; };
 		EA00FBA622870BE20016057A /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA00FBA522870BE20016057A /* Content.swift */; };
+		EA05706A22BF015200753160 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05706922BF015200753160 /* Colors.swift */; };
+		EA05706C22BFE9CC00753160 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05706B22BFE9CC00753160 /* PrivacyPolicyViewController.swift */; };
+		EA05706E22BFEE5400753160 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05706D22BFEE5400753160 /* TermsViewController.swift */; };
 		EA124AC4218F8F1200B607CB /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA124AC3218F8F1200B607CB /* AppDefaults.swift */; };
 		EA25D261213105C6007956EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D260213105C5007956EA /* LoginViewController.swift */; };
 		EA25D26321310653007956EA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA25D26221310653007956EA /* RegisterViewController.swift */; };
@@ -24,6 +27,8 @@
 		EA4C5203222C41EF0002FFDE /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4C5202222C41EF0002FFDE /* DiscoverViewController.swift */; };
 		EA95926B4EE80C25C91241CE /* Pods_Which_StreamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E71C656ADE79BCA2A6E49 /* Pods_Which_StreamUITests.framework */; };
 		EAA63F4522A609AA0015C43E /* FriendsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA63F4422A609AA0015C43E /* FriendsFeedViewController.swift */; };
+		EAA63F4722B5CB430015C43E /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA63F4622B5CB430015C43E /* SupportViewController.swift */; };
+		EAA63F4922B6E6950015C43E /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA63F4822B6E6930015C43E /* SupportViewController.swift */; };
 		EAB5270121BD8CD70021A205 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */; };
 		EAD5ACE22210984600961A32 /* SharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5ACE12210984600961A32 /* SharingViewController.swift */; };
 		EAD93B6F2153EE95008CF77E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */; };
@@ -69,12 +74,17 @@
 		E3B4C5A9BE6D8BF05E0BE80A /* Pods-Which Stream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Which Stream.release.xcconfig"; path = "Pods/Target Support Files/Pods-Which Stream/Pods-Which Stream.release.xcconfig"; sourceTree = "<group>"; };
 		EA00FBA22283AD090016057A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EA00FBA522870BE20016057A /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		EA05706922BF015200753160 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EA05706B22BFE9CC00753160 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		EA05706D22BFEE5400753160 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		EA124AC3218F8F1200B607CB /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		EA25D260213105C5007956EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA25D26221310653007956EA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EA3875C7215EED7100C192BE /* ForgotPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassViewController.swift; sourceTree = "<group>"; };
 		EA4C5202222C41EF0002FFDE /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		EAA63F4422A609AA0015C43E /* FriendsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFeedViewController.swift; sourceTree = "<group>"; };
+		EAA63F4622B5CB430015C43E /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SupportViewController.swift; path = "/Users/Jesus/Desktop/Programming/which-stream/Which Stream/Which Stream/SupportViewController.swift"; sourceTree = "<absolute>"; };
+		EAA63F4822B6E6930015C43E /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		EAB5270021BD8CD70021A205 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		EAD5ACE12210984600961A32 /* SharingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewController.swift; sourceTree = "<group>"; };
 		EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -144,6 +154,8 @@
 				0EF9B85D21054E13007F9E27 /* LaunchScreen.storyboard */,
 				0EF9B86021054E13007F9E27 /* Info.plist */,
 				EAD93B6E2153EE94008CF77E /* GoogleService-Info.plist */,
+				EAA63F4622B5CB430015C43E /* SupportViewController.swift */,
+				EAA63F4822B6E6930015C43E /* SupportViewController.swift */,
 				EA25D260213105C5007956EA /* LoginViewController.swift */,
 				EA25D26221310653007956EA /* RegisterViewController.swift */,
 				EAD93B7021547846008CF77E /* HistoryViewController.swift */,
@@ -154,6 +166,8 @@
 				EA00FBA22283AD090016057A /* SearchViewController.swift */,
 				EA00FBA522870BE20016057A /* Content.swift */,
 				EAA63F4422A609AA0015C43E /* FriendsFeedViewController.swift */,
+				EA05706B22BFE9CC00753160 /* PrivacyPolicyViewController.swift */,
+				EA05706D22BFEE5400753160 /* TermsViewController.swift */,
 			);
 			path = "Which Stream";
 			sourceTree = "<group>";
@@ -203,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				EA124AC3218F8F1200B607CB /* AppDefaults.swift */,
+				EA05706922BF015200753160 /* Colors.swift */,
 			);
 			path = Defaults;
 			sourceTree = "<group>";
@@ -525,9 +540,14 @@
 				EA00FBA32283AD0A0016057A /* SearchViewController.swift in Sources */,
 				EA25D261213105C6007956EA /* LoginViewController.swift in Sources */,
 				EAB5270121BD8CD70021A205 /* HistoryTableViewCell.swift in Sources */,
+				EA05706E22BFEE5400753160 /* TermsViewController.swift in Sources */,
 				0EF9B85721054E0D007F9E27 /* IntroViewController.swift in Sources */,
 				EA3875C8215EED7100C192BE /* ForgotPassViewController.swift in Sources */,
+				EA05706C22BFE9CC00753160 /* PrivacyPolicyViewController.swift in Sources */,
+				EA05706A22BF015200753160 /* Colors.swift in Sources */,
+				EAA63F4722B5CB430015C43E /* SupportViewController.swift in Sources */,
 				EAD5ACE22210984600961A32 /* SharingViewController.swift in Sources */,
+				EAA63F4922B6E6950015C43E /* SupportViewController.swift in Sources */,
 				0EF9B85521054E0D007F9E27 /* AppDelegate.swift in Sources */,
 				EA25D26321310653007956EA /* RegisterViewController.swift in Sources */,
 				EAA63F4522A609AA0015C43E /* FriendsFeedViewController.swift in Sources */,
