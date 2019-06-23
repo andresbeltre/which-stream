@@ -8,43 +8,14 @@
 
 import UIKit
 
-extension UIColor {
-    
-    /**
-     Extends UIColor to allow for using specific colors based on their hex values.
-     
-     - Version: 1.0
-     - Author: Leo Oliveira
-     */
-    convenience init(hex: String) {
-        // convenience keyword indicates which initializers can be inherited by
-        // subclasses that add instance variables without default values
-        
-        // Scan string for a hexadecimal representation
-        let scanner = Scanner(string: hex)
-        scanner.scanLocation = 0
-        var rgb: UInt64 = 0
-        // Inout reference to rgb (passes it by reference and not by value)
-        scanner.scanHexInt64(&rgb)
-        
-        // Bitmasking and bitshifting to obtain appropriate values
-        let r = CGFloat((rgb & 0xff0000) >> 16)/255.0
-        let g = CGFloat((rgb & 0xff00) >> 8)/255.0
-        let b = CGFloat(rgb & 0xff)/255.0
-        
-        self.init(red: r, green: g, blue: b, alpha: 1)
-    }
-}
+
 class IntroViewController: UIViewController {
-    
-    let APP_DEFAULTS = AppDefaults()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Hide navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
+        self.view.setBackgroundGradient()
         // Animate the logo
         animateIntro()
     }

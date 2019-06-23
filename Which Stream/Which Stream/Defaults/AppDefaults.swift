@@ -13,6 +13,9 @@ let SHARING_VC = "SHARING_VC"
 let DISCOVER_VC = "DISCOVER_VC"
 let SEARCH_VC = "SEARCH_VC"
 let FRIENDS_FEED_VC = "FRIENDS_FEED_VC"
+let SUPPORT_VC = "SUPPORT_VC"
+let PRIVACY_POLICY_VC = "PRIVACY_POLICY_VC"
+let TERMS_VC = "TERMS_VC"
 
 class AppDefaults {
     var sideMenuLeftAnchorConstraint: NSLayoutConstraint!
@@ -102,32 +105,12 @@ class AppDefaults {
         })
     }
     
-    /**
-     Creates a color gradient and sets it as the background
-     
-     - Version: 1.0
-     - Author: Leo Oliveira
-     */
-    func setupBackgroundGradientFor(view: UIView) -> UIView {
-        view.backgroundColor = .clear
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        gradientLayer.colors = [UIColor(hex: "5d0028").cgColor, UIColor(hex: "c96548").cgColor]
-        view.layer.insertSublayer(gradientLayer, at: 0)
-        
-        return view
-    }
-    
     func setupViewContainerFor(viewController: UIViewController?) -> UIView {
-        viewController!.view = setupBackgroundGradientFor(view: viewController!.view)
-        var viewContainer = UIView(frame: CGRect(x: 0, y: 0, width: viewController!.view.frame.width, height: viewController!.view.frame.height))
+        viewController!.view.setBackgroundGradient()
+        let viewContainer = UIView(frame: CGRect(x: 0, y: 0, width: viewController!.view.frame.width, height: viewController!.view.frame.height))
         viewContainer.center.x = viewController!.view.center.x
         viewContainer.center.y = viewController!.view.center.y
-        viewContainer = setupBackgroundGradientFor(view: viewContainer)
+        viewContainer.setBackgroundGradient()
         self.dismissMenuGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuIfVisible))
         self.dismissMenuGesture.cancelsTouchesInView = true
         viewContainer.addGestureRecognizer(self.dismissMenuGesture)
@@ -242,7 +225,12 @@ class AppDefaults {
     }
     
     @objc func toSupportVC() {
-        
+        if (self.currentVC != SUPPORT_VC) {
+            self.isInStack(newVC: SUPPORT_VC)
+            self.navigationController.pushViewController(SupportViewController(), animated: true)
+        } else {
+            self.dismissMenuIfVisible()
+        }
     }
     
     @objc func toLegalVC() {
@@ -250,11 +238,21 @@ class AppDefaults {
     }
     
     @objc func toTermsVC() {
-        
+        if (self.currentVC != TERMS_VC) {
+            self.isInStack(newVC: TERMS_VC)
+            self.navigationController.pushViewController(TermsViewController(), animated: true)
+        } else {
+            self.dismissMenuIfVisible()
+        }
     }
     
     @objc func toPrivacyVC() {
-        
+        if (self.currentVC != PRIVACY_POLICY_VC) {
+            self.isInStack(newVC: PRIVACY_POLICY_VC)
+            self.navigationController.pushViewController(PrivacyPolicyViewController(), animated: true)
+        } else {
+            self.dismissMenuIfVisible()
+        }
     }
     
     @objc func toNotificationsVC() {
@@ -275,6 +273,14 @@ class AppDefaults {
                 removeFromStack(kind: SharingViewController.self)
             case DISCOVER_VC:
                 removeFromStack(kind: DiscoverViewController.self)
+            case SEARCH_VC:
+                removeFromStack(kind: SearchViewController.self)
+            case SUPPORT_VC:
+                removeFromStack(kind: SupportViewController.self)
+            case PRIVACY_POLICY_VC:
+                removeFromStack(kind: PrivacyPolicyViewController.self)
+            case TERMS_VC:
+                removeFromStack(kind: TermsViewController.self)
             default:
                 break
         }

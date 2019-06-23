@@ -40,7 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
 //        usersRef = Firestore.firestore().document("users")
-        self.view = APP_DEFAULTS.setupBackgroundGradientFor(view: self.view)
+        self.view.setBackgroundGradient()
         setupLayout()
     }
     
